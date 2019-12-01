@@ -18,10 +18,12 @@ function login(username, password) {
         userService.login(username, password)
             .then(
                 user => { 
+                    console.log(user);
                     dispatch(success(user));
-                    history.push('/');
+                    history.push('/home');
                 },
                 error => {
+                    console.log("ERROR DUDE WTF");
                     dispatch(failure(error));
                     dispatch(alertActions.error(error));
                 }
@@ -46,7 +48,7 @@ function register(user) {
             .then(
                 user => { 
                     dispatch(success());
-                    history.push('/login');
+                    history.push('/');
                     dispatch(alertActions.success(''));
                 },
                 error => {
@@ -72,7 +74,7 @@ function getAll() {
             );
     };
 
-    function request() { return { type: userConstants.GETALL_REQUEST } }
+    function request(users) { return { type: userConstants.GETALL_REQUEST, users } }
     function success(users) { return { type: userConstants.GETALL_SUCCESS, users } }
     function failure(error) { return { type: userConstants.GETALL_FAILURE, error } }
 }

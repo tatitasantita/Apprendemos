@@ -16,14 +16,12 @@ handleDeleteUser(id) {
 }
 
   render() {
-    const { user, users } = this.props;
+    const { user } = this.props;
     console.log(user);
-    console.log(users);
     console.log(this.props);
     return (
         <div>
           <h1><img src= {loginImg}></img></h1>
-          <h1> {user.firstName} </h1>
           <nav className="mynav">
             <ul>
               <li><a href="/home">Home</a></li>

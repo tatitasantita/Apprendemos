@@ -12,7 +12,8 @@ class RegisterPage extends React.Component {
           firstName: '',
           lastName: '',
           username: '',
-          password: ''
+          password: '',
+          type: '',
       },
       submitted: false
     };
@@ -88,11 +89,10 @@ class RegisterPage extends React.Component {
 
             <div>
             <select className="select-css">
-              <option>This is a native select element</option>
-              <option>Apples</option>
-              <option>Bananas</option>
-              <option>Grapes</option>
-              <option>Oranges</option>
+              <option></option>
+              <option>Student</option>
+              <option>Parent</option>
+              <option>Teacher</option>
             </select>
             </div>
 

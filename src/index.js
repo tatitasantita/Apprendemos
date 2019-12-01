@@ -5,7 +5,7 @@ import { store } from './components/_helpers';
 import { App } from './App';
 
 import { configureFakeBackend } from './components/_helpers';
-configureFakeBackend();
+//configureFakeBackend();
 
 
 ReactDOM.render(

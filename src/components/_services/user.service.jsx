@@ -14,17 +14,11 @@ function login(username, password) {
     const requestOptions = {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ username, password })
+        body: JSON.stringify({ username, password }),
+        mode: 'cors',
     };
 
-    return fetch(`/users/authenticate`, requestOptions)
-        .then(handleResponse)
-        .then(user => {
-            // store user details and jwt token in local storage to keep user logged in between page refreshes
-            localStorage.setItem('user', JSON.stringify(user));
-
-            return user;
-        });
+    return fetch(`http://localhost:3000/getUserByCredentials`, requestOptions).then(response => handleResponse(response));
 }
 
 function logout() {
@@ -35,29 +29,49 @@ function logout() {
 function getAll() {
     const requestOptions = {
         method: 'GET',
-        headers: authHeader()
+        headers: authHeader(),
+        mode: 'cors',
     };
 
-    return fetch(`/users`, requestOptions).then(handleResponse);
+    return fetch(`http://localhost:3000/getUsers`, requestOptions).then(response => handleResponse(response));
+}
+
+function getUserByCredentials(credentials) {
+    const requestOptions = {
+        method: 'GET',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(credentials),
+        mode: 'cors',
+    }
+
+    console.log("HEY NOW HEY NOW");
+    console.log(credentials);
+
+    return fetch(`http://localhost:3000/getUserByCredentials`, requestOptions).then(response => handleResponse(response));
 }
 
 function getById(id) {
     const requestOptions = {
         method: 'GET',
-        headers: authHeader()
+        headers: authHeader(),
+        body: JSON.stringify({id})
     };
 
-    return fetch(`/users/${id}`, requestOptions).then(handleResponse);
+    return fetch(`/getUserById`, requestOptions).then(handleResponse);
 }
 
 function register(user) {
     const requestOptions = {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(user)
+        body: JSON.stringify(user),
+        mode: 'cors',
     };
 
-    return fetch(`/users/register`, requestOptions).then(handleResponse);
+    console.log("HEY NOW HEY NOW");
+    console.log(user);
+    
+    return fetch(`http://localhost:3000/createUser`, requestOptions).then(response => handleResponse(response));
 }
 
 function update(user) {
@@ -67,22 +81,27 @@ function update(user) {
         body: JSON.stringify(user)
     };
 
-    return fetch(`/users/${user.id}`, requestOptions).then(handleResponse);;
+    return fetch(`/updateUser`, requestOptions).then(handleResponse);;
 }
 
 // prefixed function name with underscore because delete is a reserved word in javascript
 function _delete(id) {
     const requestOptions = {
         method: 'DELETE',
-        headers: authHeader()
+        headers: authHeader(),
+        body: JSON.stringify(id)
     };
 
-    return fetch(`/users/${id}`, requestOptions).then(handleResponse);
+    return fetch(`/deleteUser`, requestOptions).then(handleResponse);
 }
 
 function handleResponse(response) {
+    console.log(response);
+    console.log("HELLO");
     return response.text().then(text => {
         const data = text && JSON.parse(text);
+        console.log("INTERESTING");
+        console.log(data);
         if (!response.ok) {
             if (response.status === 401) {
                 // auto logout if 401 response returned from api
@@ -95,4 +114,5 @@ function handleResponse(response) {
 
         return data;
     });
+
 }
