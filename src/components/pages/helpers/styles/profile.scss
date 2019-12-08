@@ -1,0 +1,30 @@
+.avatar {
+  border: none;
+  border-radius: 50%;
+}
+
+.avatar:focus {
+  outline: none;
+}
+
+.avatar--effect-boris::after {
+  background: rgba(111, 148, 182, 0.1);
+}
+
+.avatar--effect-boris.avatar--click::after {
+  animation: anim-effect-boris 0.3s forwards;
+}
+
+@keyframes anim-effect-boris {
+  0% {
+    transform: scale3d(0.3, 0.3, 1);
+  }
+  25%,
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    transform: scale3d(1.2, 1.2, 1);
+  }
+}

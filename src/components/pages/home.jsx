@@ -4,41 +4,90 @@ import Students from "../../students.png";
 
 import { userActions } from "../_actions";
 import { connect } from "react-redux";
+import Table from "./helpers/table";
+import Loading from "../loading";
+import Header from "./helpers/header";
 
 class Home extends React.Component {
-  componentDidMount() {
-    this.props.getUsers();
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      graphUsers: undefined,
+      graphChanged: false,
+      user: localStorage.getItem("user")
+    };
   }
 
+  componentDidMount() {
+    this.props.getUsers();
+    if (
+      this.state.user &&
+      this.state.graphUsers == undefined &&
+      !this.state.graphChanged
+    ) {
+      this.setState({
+        graphUsers: this.props.getUsersByType(this.props.user[0].user_type),
+        graphChanged: true
+      });
+    }
+  }
   handleDeleteUser(id) {
     return e => this.props.deleteUser(id);
   }
 
+  getCredentials(user) {
+    switch (user.type) {
+      case "Student":
+        this.getTeacher(user.id);
+        break;
+      case "Parent":
+        this.getStudentCredentials(user.id);
+        break;
+      case "Teacher":
+        this.getStudents(user.id);
+      default:
+      // handle error
+    }
+  }
+
+  getStudents() {
+    return this.props.getUsersByType("Student");
+  }
+
+  getTeachers() {
+    return this.props.getUsersByType("Teacher");
+  }
+
+  getStudentCredentials() {
+    const { users } = this.props;
+  }
+
   render() {
-    const { user } = this.props;
-    console.log(user);
-    console.log(this.props);
+    if (this.props.users.loading == undefined) {
+      return <Loading />;
+    }
+
+    if (this.props.users.loading == true) {
+      return <Loading />;
+    }
+
+    let users = this.props.users;
+    console.log(this.state.user);
+
     return (
       <div>
-        <h1>
-          <img src={loginImg}></img>
-        </h1>
-        <nav className="mynav">
-          <ul>
-            <li>
-              <a href="/home">Home</a>
-            </li>
-            <li>
-              <a href="/learn">Learn</a>
-            </li>
-            <li>
-              <a href="/chat">Chat</a>
-            </li>
-            <li>
-              <a href="/">Logout</a>
-            </li>
-          </ul>
-        </nav>
+        <div>
+          <h1>
+            <img src={loginImg}></img>
+          </h1>
+          <Header />
+        </div>
+        <div>
+          <Table
+            users={this.state.graphUsers ? this.state.graphUsers : users}
+          />
+        </div>
       </div>
     );
   }
@@ -52,6 +101,7 @@ function mapState(state) {
 
 const actionCreators = {
   getUsers: userActions.getAll,
+  getUsersByType: userActions.getUsersByType,
   deleteUser: userActions.delete
 };
 

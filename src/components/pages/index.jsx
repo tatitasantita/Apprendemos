@@ -5,3 +5,4 @@ export { Books } from "./books";
 export { Videos } from "./videos";
 export { Learn } from "./learn";
 export { Chat } from "./chat";
+export { Profile } from "./profile";

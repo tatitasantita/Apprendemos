@@ -1,7 +1,14 @@
 import React from "react";
 import "./App.scss";
 import { Mainpage } from "./components/login/index";
-import { Home, Books, Videos, Learn, Chat } from "./components/pages/index";
+import {
+  Home,
+  Books,
+  Videos,
+  Learn,
+  Chat,
+  Profile
+} from "./components/pages/index";
 import { history } from "./components/_helpers";
 import { alertActions } from "./components/_actions";
 import { connect } from "react-redux";
@@ -29,11 +36,12 @@ class App extends React.Component {
 
             <Router history={history}>
               <Switch>
-                <PrivateRoute exact path="/" component={Home} />
+                <PrivateRoute exact path="/" component={Mainpage} />
                 <Route exact path="/login" component={Mainpage} />
                 <Route exact path="/home" component={Home} />
                 <Route exact path="/learn" component={Learn} />
                 <Route exact path="/chat" component={Chat} />
+                <Route exact path="/profile" component={Profile} />
                 <Redirect from="*" to="/" />
               </Switch>
             </Router>
