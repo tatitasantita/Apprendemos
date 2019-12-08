@@ -79,7 +79,7 @@ const getUsersByType = (request, response, db) => {
 };
 
 const addFile = (request, respnose, db) => {
-  const { file } = request.body;
+  console.log(request);
 };
 
 module.exports = {
@@ -89,5 +89,6 @@ module.exports = {
   updateUser,
   deleteUser,
   getUsersByType,
-  getUserByCredentials
+  getUserByCredentials,
+  addFile
 };

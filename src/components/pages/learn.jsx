@@ -28,7 +28,18 @@ export class Learn extends React.Component {
           <div className="filePond">
             <FilePond
               allowMultiple={true}
-              server="http://localhost:3000/addFile"
+              server={{
+                process: {
+                  url: "http://localhost:3000/addFile",
+                  method: "POST",
+                  withCredentials: false,
+                  headers: { "Access-Control-Allow-Origin": "*" },
+                  timeout: 7000,
+                  onload: null,
+                  onerror: null,
+                  ssl: true
+                }
+              }}
             />
           </div>
         </div>
