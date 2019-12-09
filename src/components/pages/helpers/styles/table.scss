@@ -8,7 +8,8 @@
   font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
   border-collapse: collapse;
   border: 3px solid #ddd;
-  width: 100%;
+  width: 50%;
+  justify-content: center;
 }
 
 #students td,
@@ -31,4 +32,9 @@
   text-align: center;
   background-color: #4caf50;
   color: white;
+}
+
+#tableContainer {
+  display: flex;
+  justify-content: center;
 }

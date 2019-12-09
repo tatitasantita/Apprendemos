@@ -13,7 +13,7 @@ const Header = props => {
         {console.log("RIGHT HERE MY G")}
         <RelativeHeader type={props.user.user_type} />
         <li>
-          <a href="/chat">Chat</a>
+          <a href="/messages">Messages</a>
         </li>
         <li>
           <a href="/profile">Profile</a>

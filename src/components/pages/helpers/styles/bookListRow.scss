@@ -1,7 +1,18 @@
 .bookListRow {
   padding: 20px;
+  width: 10%;
 }
 
 .perRow {
   display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.bookListContainer {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  flex-wrap: wrap;
+  justify-content: center;
 }

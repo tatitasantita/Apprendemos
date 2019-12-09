@@ -2,7 +2,7 @@ import React from "react";
 import loginImg from "../../login.svg";
 import Header from "./helpers/header";
 
-export class Chat extends React.Component {
+export class Messages extends React.Component {
   constructor(props) {
     super(props);
 

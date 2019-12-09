@@ -36,9 +36,11 @@ class Table extends Component {
     return (
       <div>
         <h1 id="title">{this.getTableName()}</h1>
-        <table id="students">
-          <tbody>{this.renderTableData()}</tbody>
-        </table>
+        <div id="tableContainer">
+          <table id="students">
+            <tbody>{this.renderTableData()}</tbody>
+          </table>
+        </div>
       </div>
     );
   }

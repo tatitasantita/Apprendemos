@@ -30,15 +30,16 @@ const getUserByCredentials = (request, response, db) => {
 };
 
 const createUser = (request, response, db) => {
-  const { firstName, lastName, username, password, user_type } = request.body;
+  const { firstName, lastName, username, password, type } = request.body;
 
+  console.log(request.body);
   db("users")
     .insert({
       username: username,
       password: password,
       first_name: firstName,
       last_name: lastName,
-      user_type: user_type
+      user_type: type
     })
     .then(response.status(200).json());
 };

@@ -6,7 +6,7 @@ import {
   Books,
   Resources,
   Learn,
-  Chat,
+  Messages,
   Profile
 } from "./components/pages/index";
 import { history } from "./components/_helpers";
@@ -42,7 +42,7 @@ class App extends React.Component {
                 <Route exact path="/learn" component={Learn} />
                 <Route exact path="/books" component={Books} />
                 <Route exact path="/resources" component={Resources} />
-                <Route exact path="/chat" component={Chat} />
+                <Route exact path="/messages" component={Messages} />
                 <Route exact path="/profile" component={Profile} />
                 <Redirect from="*" to="/" />
               </Switch>
