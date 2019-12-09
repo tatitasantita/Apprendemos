@@ -15,7 +15,7 @@ class Home extends React.Component {
     this.state = {
       graphUsers: undefined,
       graphChanged: false,
-      user: localStorage.getItem("user")
+      user: JSON.parse(localStorage.getItem("user"))[0]
     };
   }
 
@@ -27,7 +27,7 @@ class Home extends React.Component {
       !this.state.graphChanged
     ) {
       this.setState({
-        graphUsers: this.props.getUsersByType(this.props.user[0].user_type),
+        graphUsers: this.getCredentials(),
         graphChanged: true
       });
     }
@@ -36,16 +36,16 @@ class Home extends React.Component {
     return e => this.props.deleteUser(id);
   }
 
-  getCredentials(user) {
-    switch (user.type) {
+  getCredentials() {
+    switch (this.state.user.user_type) {
       case "Student":
-        this.getTeacher(user.id);
+        this.getTeachers();
         break;
       case "Parent":
-        this.getStudentCredentials(user.id);
+        this.getParents();
         break;
       case "Teacher":
-        this.getStudents(user.id);
+        this.getStudents();
       default:
       // handle error
     }
@@ -59,8 +59,8 @@ class Home extends React.Component {
     return this.props.getUsersByType("Teacher");
   }
 
-  getStudentCredentials() {
-    const { users } = this.props;
+  getParents() {
+    return this.props.getUsersByType("Parent");
   }
 
   render() {
@@ -81,10 +81,11 @@ class Home extends React.Component {
           <h1>
             <img src={loginImg}></img>
           </h1>
-          <Header />
+          <Header user={this.state.user} />
         </div>
         <div>
           <Table
+            user={this.state.user}
             users={this.state.graphUsers ? this.state.graphUsers : users}
           />
         </div>

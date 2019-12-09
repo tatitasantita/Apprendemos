@@ -7,7 +7,10 @@ export const userService = {
   getAll,
   getUsersByType,
   getById,
-  addFile,
+  addResource,
+  getAllResources,
+  addBook,
+  getAllBooks,
   update,
   delete: _delete
 };
@@ -96,15 +99,60 @@ function register(user) {
   ).then(response => handleResponse(response));
 }
 
-function addFile(file) {
+function addResource(resource) {
   const requestOptions = {
     method: "POST",
     headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(file),
+    body: JSON.stringify(resource),
     mode: "cors"
   };
 
-  console.log(file);
+  console.log(resource);
+  return fetch(
+    `http://localhost:3000/addResource`,
+    requestOptions
+  ).then(response => handleResponse(response));
+}
+
+function getAllResources() {
+  const requestOptions = {
+    method: "GET",
+    headers: authHeader(),
+    mode: "cors"
+  };
+
+  return fetch(
+    `http:localhost:3000/getAllResources`,
+    requestOptions
+  ).then(response => handleResponse(response));
+}
+
+function addBook(book) {
+  const requestOptions = {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(book),
+    mode: "cors"
+  };
+
+  console.log(book);
+
+  return fetch(`http://localhost:3000/addBook`, requestOptions).then(response =>
+    handleResponse(response)
+  );
+}
+
+function getAllBooks() {
+  const requestOptions = {
+    method: "GET",
+    headers: authHeader(),
+    mode: "cors"
+  };
+
+  return fetch(
+    `http:localhost:3000/getAllBooks`,
+    requestOptions
+  ).then(response => handleResponse(response));
 }
 
 function update(user) {

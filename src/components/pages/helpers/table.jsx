@@ -19,10 +19,23 @@ class Table extends Component {
     });
   }
 
+  getTableName() {
+    switch (this.props.user.user_type) {
+      case "Teacher":
+        return "Student Directory";
+      case "Parent":
+        return "Parent Directory";
+      case "Student":
+        return "Teacher Directory";
+      default:
+        break;
+    }
+  }
+
   render() {
     return (
       <div>
-        <h1 id="title">Students</h1>
+        <h1 id="title">{this.getTableName()}</h1>
         <table id="students">
           <tbody>{this.renderTableData()}</tbody>
         </table>

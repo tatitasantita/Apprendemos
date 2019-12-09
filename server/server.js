@@ -77,6 +77,11 @@ app.get("/getUserByStudentId", (req, res) => queries.getUserById(req, res, db));
 app.post("/getUserByCredentials", (req, res) =>
   queries.getUserByCredentials(req, res, db)
 );
-app.post("/addFile", (req, res) => queries.addFile(req, res, db));
+app.post("/addBook", (req, res) => queries.addBook(req, res, db));
+app.post("/addResource", (req, res) => queries.addResource(req, res, db));
+app.get("/getAllResources", (req, res) =>
+  queries.getAllResources(req, res, db)
+);
+app.get("/getAllBooks", (req, res) => queries.getAllBooks(req, res, db));
 
 app.listen(3000, () => console.log("App listening on port 3000"));

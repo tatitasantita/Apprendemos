@@ -2,16 +2,12 @@ import React from "react";
 
 import styles from "./loading";
 
+import FadeIn from "react-fade-in";
+import Lottie from "react-lottie";
+import ReactLoading from "react-loading";
+
 const Loading = props => {
-  return (
-    <div
-      className={`h-100 d-flex flex-column justify-content-center align-items-center ${styles.loading}`}
-    >
-      <svg viewBox="25 25 50 50">
-        <circle cx="50" cy="50" r="20"></circle>
-      </svg>
-    </div>
-  );
+  return <ReactLoading type={"bars"} color={"white"} />;
 };
 
 export default Loading;

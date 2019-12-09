@@ -15,6 +15,37 @@ export function users(state = {}, action) {
       return {
         error: action.error
       };
+
+    case userConstants.GETALLRESOURCES_REQUEST:
+      return {
+        loading: true
+      };
+    case userConstants.GETALLRESOURCES_SUCCESS:
+      return {
+        items: action.resources,
+        loading: false
+      };
+    case userConstants.GETALLRESOURCES_FAILURE:
+      return {
+        error: action.error
+      };
+
+    case userConstants.GETALLBOOKS_REQUEST:
+      return {
+        loading: true
+      };
+
+    case userConstants.GETALLBOOKS_SUCCESS:
+      return {
+        items: action.books,
+        loading: false
+      };
+
+    case userConstants.GETALLBOOKS_FAILURE:
+      return {
+        error: action.error
+      };
+
     case userConstants.GETBYTYPE_REQUEST:
       return {
         loading: true

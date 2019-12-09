@@ -2,17 +2,17 @@ body {
   background: #ededed;
   padding: 0 0px;
   margin: 0;
-  font-family: 'Open Sans', Arial, sans-serif;
+  font-family: "Open Sans", Arial, sans-serif;
   text-align: center;
 }
 
 h1 {
   text-align: center;
   margin: 0px 0;
-    img {
-      width: 40%;
-      height: 40%;
-    }
+  img {
+    width: 40%;
+    height: 40%;
+  }
 }
 
 .mynav ul {
@@ -23,7 +23,6 @@ h1 {
   width: 100%;
   background-color: #0e81ce96;
   padding: 0;
-
 }
 
 // .pagecontent ul {
@@ -61,5 +60,14 @@ h1 {
 
 .mynav a,
 .target {
-  transition: all .35s ease-in-out;
+  transition: all 0.35s ease-in-out;
+}
+
+.flexList {
+  display: flex;
+  justify-content: center;
+}
+
+.innerFlexList {
+  width: 33%;
 }

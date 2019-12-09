@@ -4,7 +4,7 @@ import { Mainpage } from "./components/login/index";
 import {
   Home,
   Books,
-  Videos,
+  Resources,
   Learn,
   Chat,
   Profile
@@ -40,6 +40,8 @@ class App extends React.Component {
                 <Route exact path="/login" component={Mainpage} />
                 <Route exact path="/home" component={Home} />
                 <Route exact path="/learn" component={Learn} />
+                <Route exact path="/books" component={Books} />
+                <Route exact path="/resources" component={Resources} />
                 <Route exact path="/chat" component={Chat} />
                 <Route exact path="/profile" component={Profile} />
                 <Redirect from="*" to="/" />

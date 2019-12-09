@@ -9,12 +9,8 @@ export class Profile extends React.Component {
     super(props);
 
     this.state = {
-      user: localStorage.getItem("user")
+      user: JSON.parse(localStorage.getItem("user"))[0]
     };
-  }
-
-  componentDidMount() {
-    this.setState({ user: JSON.parse(this.state.user) });
   }
 
   render() {
@@ -23,7 +19,7 @@ export class Profile extends React.Component {
         <h1>
           <img src={loginImg}></img>
         </h1>
-        <Header />
+        <Header user={this.state.user} />
         <div className="users show">
           <div className="container-fluid main-container">
             <div
@@ -35,8 +31,7 @@ export class Profile extends React.Component {
                   <div className="profile-info">
                     <h1 className="hero-title">
                       {"Hey, "}
-                      {this.state.user[0].first_name}{" "}
-                      {this.state.user[0].last_name}
+                      {this.state.user.first_name} {this.state.user.last_name}
                     </h1>
                     <p className="hero-description">{this.state.user.type}</p>
                   </div>

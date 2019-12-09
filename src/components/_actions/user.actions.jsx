@@ -9,6 +9,10 @@ export const userActions = {
   register,
   getAll,
   getUsersByType,
+  addResource,
+  addBook,
+  getAllResources,
+  getAllBooks,
   delete: _delete
 };
 
@@ -117,6 +121,100 @@ function getUsersByType(user_type) {
   }
   function failure(error) {
     return { type: userConstants.GETBYTYPE_FAILURE, error };
+  }
+}
+
+function addResource(resource) {
+  return dispatch => {
+    dispatch(request({ resource }));
+
+    userService.addResource(resource).then(
+      resource => {
+        dispatch(success(resource));
+      },
+      error => {
+        dispatch(failure(error));
+        dispatch(alertActions.error(error));
+      }
+    );
+  };
+
+  function request(resource) {
+    return { type: userConstants.ADD_FILE_REQUEST, resource };
+  }
+  function success(resource) {
+    return { type: userConstants.ADD_FILE_SUCCESS, resource };
+  }
+  function failure(error) {
+    return { type: userConstants.ADD_FILE_FAILURE, error };
+  }
+}
+
+function getAllResources() {
+  return dispatch => {
+    dispatch(request());
+
+    userService.getAllResources().then(
+      resources => dispatch(success(resources)),
+      error => dispatch(failure(error))
+    );
+  };
+
+  function request(users) {
+    return { type: userConstants.GETALLRESOURCES_REQUEST, users };
+  }
+  function success(resources) {
+    return { type: userConstants.GETALLRESOURCES_SUCCESS, resources };
+  }
+  function failure(error) {
+    return { type: userConstants.GETALLRESOURCES_FAILURE, error };
+  }
+}
+
+function addBook(book) {
+  return dispatch => {
+    dispatch(request({ book }));
+
+    userService.addBook(book).then(
+      book => {
+        dispatch(success(book));
+      },
+      error => {
+        dispatch(failure(error));
+        dispatch(alertActions.error(error));
+      }
+    );
+  };
+
+  function request(book) {
+    return { type: userConstants.ADD_FILE_REQUEST, book };
+  }
+  function success(book) {
+    return { type: userConstants.ADD_FILE_SUCCESS, book };
+  }
+  function failure(error) {
+    return { type: userConstants.ADD_FILE_FAILURE, error };
+  }
+}
+
+function getAllBooks() {
+  return dispatch => {
+    dispatch(request());
+
+    userService.getAllBooks().then(
+      books => dispatch(success(books)),
+      error => dispatch(failure(error))
+    );
+  };
+
+  function request(book) {
+    return { type: userConstants.GETALLBOOKS_REQUEST, book };
+  }
+  function success(books) {
+    return { type: userConstants.GETALLBOOKS_SUCCESS, books };
+  }
+  function failure(error) {
+    return { type: userConstants.GETALL_FAILURE, error };
   }
 }
 

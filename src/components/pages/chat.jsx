@@ -5,6 +5,10 @@ import Header from "./helpers/header";
 export class Chat extends React.Component {
   constructor(props) {
     super(props);
+
+    this.state = {
+      user: JSON.parse(localStorage.getItem("user"))[0]
+    };
   }
 
   render() {
@@ -14,7 +18,7 @@ export class Chat extends React.Component {
           <img src={loginImg}></img>
         </h1>
 
-        <Header />
+        <Header user={this.state.user} />
         <body> Coming soon! </body>
       </div>
     );

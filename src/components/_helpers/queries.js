@@ -78,8 +78,61 @@ const getUsersByType = (request, response, db) => {
     .catch(err => response.status(400).json({ dbError: "db error" }));
 };
 
-const addFile = (request, respnose, db) => {
-  console.log(request);
+const addResource = (request, response, db) => {
+  const { title, link, uploaded_on, teacher_id } = request.body;
+
+  db("resources")
+    .insert({
+      title,
+      link,
+      uploaded_on,
+      teacher_id
+    })
+    .then(response.status(200).json());
+};
+
+const getAllResources = (request, response, db) => {
+  db.select("*")
+    .from("resources")
+    .returning("*")
+    .then(items => {
+      console.log("THESE ARE THE SHITS");
+      console.log(items);
+      return response.json(items);
+    })
+    .catch(err => response.status(400).json({ dbError: "db error" }));
+};
+
+const addBook = (request, response, db) => {
+  const {
+    title,
+    author,
+    language,
+    picture,
+    link,
+    uploaded_on,
+    teacher_id
+  } = request.body;
+
+  db("books")
+    .insert({
+      title,
+      author,
+      language,
+      picture,
+      link,
+      uploaded_on,
+      teacher_id
+    })
+    .then(response.status(200).json());
+};
+
+const getAllBooks = (request, response, db) => {
+  db.select("*")
+    .from("books")
+    .then(items => {
+      return response.json(items);
+    });
 };
 
 module.exports = {
@@ -90,5 +143,8 @@ module.exports = {
   deleteUser,
   getUsersByType,
   getUserByCredentials,
-  addFile
+  addBook,
+  addResource,
+  getAllResources,
+  getAllBooks
 };
